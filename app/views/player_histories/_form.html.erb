@@ -1,0 +1,33 @@
+<%= form_for(@player_history) do |f| %>
+  <% if @player_history.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@player_history.errors.count, "error") %> prohibited this player_history from being saved:</h2>
+
+      <ul>
+      <% @player_history.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :player_id %><br>
+    <%= f.number_field :player_id %>
+  </div>
+  <div class="field">
+    <%= f.label :score %><br>
+    <%= f.number_field :score %>
+  </div>
+  <div class="field">
+    <%= f.label :rank %><br>
+    <%= f.number_field :rank %>
+  </div>
+  <div class="field">
+    <%= f.label :is_weekly %><br>
+    <%= f.check_box :is_weekly %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

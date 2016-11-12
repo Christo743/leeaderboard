@@ -1,0 +1,1 @@
+json.array! @player_histories, partial: 'player_histories/player_history', as: :player_history
