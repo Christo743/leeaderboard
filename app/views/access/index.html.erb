@@ -1,1 +1,24 @@
-Test
+<div style="width:100%; position: relative; float:left; margin-bottom: 30px;">
+  <h1 style="margin: 0 auto; width: 170px;">High Score</h1>
+</div>
+
+<br/>
+
+
+<table style="width:100%">
+  <tr>
+    <th>Position</th>
+    <th>Username</th>
+    <th>Score</th>
+  </tr>
+
+  <% position = 1 %>
+  <% @players.each do |player| %>
+      <tr>
+        <td align="center"><%= position %></td>
+        <td align="center"><%= player.username %></td>
+        <td align="center"><%= player.score %></td>
+      </tr>
+      <% position = position + 1 %>
+  <% end %>
+</table>
