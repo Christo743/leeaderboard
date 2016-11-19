@@ -1,0 +1,29 @@
+<a href="/access/index"> Back to Home </a>
+
+<h1 style="width:100%; position: relative; float:left; margin-bottom: 30px; text-align: left">Player info</h1>
+
+<div>
+  Username : <%= @player.username %>
+</div>
+<div>
+  Registered : <%= @player.created_at %>
+</div>
+
+
+<h1 style="width:100%; position: relative; float:left; margin-bottom: 30px; text-align: center">Awards</h1>
+
+<div style="width: 100%; position: relative; float:left">
+  <% @player.player_awards.each do |player_award| %>
+      <div style="margin: 0; width: 25%">
+        <img src="<%=player_award.award.image%>" style="width: 100%; float:left; position:relative"/>
+        <div style="position:relative; float: left; width: 100%; text-align: center;">
+          <b><%=player_award.award.name%></b>
+        </div>
+        <div style="position:relative; float: left; width: 100%; size: 4px; text-align: center;">
+          <i><%=player_award.award.created_at%></i>
+        </div>
+      </div>
+  <% end %>
+</div>
+
+<h1 style="width:100%; position: relative; float:left; margin-bottom: 30px; text-align: center">History</h1>

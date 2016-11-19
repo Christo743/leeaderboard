@@ -15,11 +15,13 @@
 
   <% position = 1 %>
   <% @players.each do |player| %>
-      <tr>
-        <td align="center"><%= position %></td>
-        <td align="center"><%= player.username %></td>
-        <td align="center"><%= player.score %></td>
-      </tr>
+
+        <tr>
+          <td align="center"><%= position %></td>
+          <td align="center"><a href="/access/player/<%=player.id%>"><%= player.username %></a></td>
+          <td align="center"><%= player.score %></td>
+        </tr>
+
       <% position = position + 1 %>
   <% end %>
 </table>
