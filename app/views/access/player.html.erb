@@ -14,8 +14,10 @@
 
 <div style="width: 100%; position: relative; float:left">
   <% @player.player_awards.each do |player_award| %>
-      <div style="margin: 0; width: 25%">
-        <img src="<%=player_award.award.image%>" style="width: 100%; float:left; position:relative"/>
+      <div style="margin: 0; width: 25%; position: relative; float:left; height: 180px;">
+
+          <img src="<%=player_award.award.image%>" style="height: 80%; "/>
+
         <div style="position:relative; float: left; width: 100%; text-align: center;">
           <b><%=player_award.award.name%></b>
         </div>
