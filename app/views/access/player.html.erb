@@ -6,7 +6,7 @@
   Username : <%= @player.username %>
 </div>
 <div>
-  Registered : <%= @player.created_at %>
+  Registered : <%= @player.created_at.strftime("%d-%m-%Y") %>
 </div>
 
 
@@ -22,10 +22,52 @@
           <b><%=player_award.award.name%></b>
         </div>
         <div style="position:relative; float: left; width: 100%; size: 4px; text-align: center;">
-          <i><%=player_award.award.created_at%></i>
+          <i><%=player_award.award.created_at.strftime("%d-%m-%Y")%></i>
         </div>
       </div>
   <% end %>
 </div>
 
 <h1 style="width:100%; position: relative; float:left; margin-bottom: 30px; text-align: center">History</h1>
+
+
+<table style="width:40%; position: relative; float: left;" class="sortable">
+  <tr>
+    <th>Score</th>
+    <th>Rank</th>
+    <th>Date</th>
+  </tr>
+
+  <% score = 0 %>
+  <% @player.player_histories.where('is_weekly = ?',false).order(created_at: :desc).each do |player_history| %>
+
+      <% score = score + player_history.score %>
+      <tr>
+        <td align="center"><%= score %></td>
+        <td align="center"><%= player_history.rank %></td>
+        <td align="center"><%= player_history.created_at.strftime("%d-%m-%Y %H:%M:%S") %></td>
+      </tr>
+
+  <% end %>
+</table>
+
+
+<table style="width:40%; position: relative; float: right;" class="sortable">
+  <tr>
+    <th>Score</th>
+    <th>Rank</th>
+    <th>Date</th>
+  </tr>
+
+  <% score = 0 %>
+  <% @player.player_histories.where('is_weekly = ?',true).order(created_at: :desc).each do |player_history| %>
+
+      <% score = score + player_history.score %>
+      <tr>
+        <td align="center"><%= score %></td>
+        <td align="center"><%= player_history.rank %></td>
+        <td align="center"><%= player_history.created_at.strftime("%d-%m-%Y %H:%M:%S") %></td>
+      </tr>
+
+  <% end %>
+</table>
