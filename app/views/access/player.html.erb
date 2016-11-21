@@ -1,3 +1,7 @@
+<%= javascript_include_tag "sorttable" %>
+<%= stylesheet_link_tag "access" %>
+
+
 <a href="/access/index"> Back to Home </a>
 
 <h1 style="width:100%; position: relative; float:left; margin-bottom: 30px; text-align: left">Player info</h1>
@@ -45,7 +49,7 @@
     <% @player.player_histories.where('is_weekly = ?',false).order(created_at: :desc).each do |player_history| %>
 
         <tr>
-          <td align="center"><%= score %></td>
+          <td align="center"><%= player_history.score %></td>
           <td align="center"><%= player_history.rank %></td>
           <td align="center"><%= player_history.created_at.strftime("%d-%m-%Y %H:%M:%S") %></td>
         </tr>
@@ -69,7 +73,7 @@
     <% score = @player.player_histories.where('is_weekly = ?',true).sum(:score) %>
     <% @player.player_histories.where('is_weekly = ?',true).order(created_at: :desc).each do |player_history| %>
         <tr>
-          <td align="center"><%= score %></td>
+          <td align="center"><%= player_history.score %></td>
           <td align="center"><%= player_history.rank %></td>
           <td align="center"><%= player_history.created_at.strftime("%d-%m-%Y %H:%M:%S") %></td>
         </tr>

@@ -12,6 +12,13 @@ class AccessController < ApplicationController
 
     @player = Player.find(params[:id])
 
+  end
+
+  def login
+
+  end
+
+  def attempt_login
 
   end
 
