@@ -46,7 +46,7 @@
     </tr>
 
 
-    <% orderdScores = @player.player_histories.where('is_weekly = ?',false).order(created_at: :desc) %>
+    <% orderdScores = @player.player_histories.order(created_at: :desc) %>
     <% orderdScores.each do |player_history| %>
 
         <tr>
@@ -70,7 +70,8 @@
       <th>Date</th>
     </tr>
 
-    <% orderdScores = @player.player_histories.where('is_weekly = ?',true).order(created_at: :desc) %>
+    <% d = Date.today %>
+    <% orderdScores = @player.player_histories.where('created_at >= ? and created_at <= ?', d.at_beginning_of_week, d.at_beginning_of_week + 7.days).order(created_at: :desc) %>
     <% orderdScores.each do |player_history| %>
         <tr>
           <td align="center"><%= player_history.score %></td>
