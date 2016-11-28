@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161211173828) do
+ActiveRecord::Schema.define(version: 20161211213319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 20161211173828) do
     t.integer  "player_id"
     t.integer  "score"
     t.integer  "rank"
-    t.boolean  "is_weekly"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -45,8 +44,9 @@ ActiveRecord::Schema.define(version: 20161211173828) do
     t.integer  "score"
     t.string   "username"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "is_admin",        default: false
   end
 
 end

@@ -24,7 +24,8 @@ class PlayersController < ApplicationController
   # POST /players
   # POST /players.json
   def create
-    @player = Player.new(player_params)
+    @player = Player.new(player_params.except(:password))
+    @player.password = params[:password]
 
     respond_to do |format|
       if @player.save
@@ -69,6 +70,6 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:score, :username, :password_digest)
+      params.require(:player).permit(:score, :username, :password)
     end
 end
