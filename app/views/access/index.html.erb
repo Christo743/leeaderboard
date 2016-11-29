@@ -5,23 +5,48 @@
 
 <br/>
 
+<div style ="width:40%; position:relative; float:left">
+  <h2 style="width:100%; text-align: center"> Global High Score </h2>
+  <table style="width:100%" class="sortable">
+    <tr>
+      <th>Position</th>
+      <th>Username</th>
+      <th>Score</th>
+    </tr>
 
-<table style="width:100%" class="sortable">
-  <tr>
-    <th>Position</th>
-    <th>Username</th>
-    <th>Score</th>
-  </tr>
+    <% position = 1 %>
+    <% @players.each do |player| %>
 
-  <% position = 1 %>
-  <% @players.each do |player| %>
+          <tr>
+            <td align="center"><%= position %></td>
+            <td align="center"><a href="/access/player/<%=player.id%>"><%= player.username %></a></td>
+            <td align="center"><%= player.score %></td>
+          </tr>
+
+        <% position = position + 1 %>
+    <% end %>
+  </table>
+</div>
+
+<div style ="width:40%; position:relative; float:right">
+  <h2 style="width:100%; text-align: center"> This weeks High Score </h2>
+  <table style="width:100%" class="sortable">
+    <tr>
+      <th>Position</th>
+      <th>Username</th>
+      <th>Score</th>
+    </tr>
+
+    <% position = 1 %>
+    <% @weekly_players.each do |player_history| %>
 
         <tr>
           <td align="center"><%= position %></td>
-          <td align="center"><a href="/access/player/<%=player.id%>"><%= player.username %></a></td>
-          <td align="center"><%= player.score %></td>
+          <td align="center"><a href="/access/player/<%=player.id%>"><%= player_history.player.username %></a></td>
+          <td align="center"><%= player_history.score %></td>
         </tr>
 
-      <% position = position + 1 %>
-  <% end %>
-</table>
+        <% position = position + 1 %>
+    <% end %>
+  </table>
+</div>
