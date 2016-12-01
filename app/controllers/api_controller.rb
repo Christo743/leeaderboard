@@ -1,5 +1,8 @@
 class ApiController < ApplicationController
 
+  before_action :valid_request
+  layout :false
+
   def record_score
 
     if params[:player_id].nil?
@@ -15,7 +18,6 @@ class ApiController < ApplicationController
     playerHistory = PlayerHistory.new
     playerHistory.player_id = params[:player_id]
     playerHistory.score = params[:score]
-    playerHistory.is_weekly = false;
     playerHistory.rank = playerHistory.player.player_histories.where('score > ?', params[:score]).count + 1
     if playerHistory.rank == 1
       playerHistory.player.score = params[:score]
