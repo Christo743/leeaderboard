@@ -12,10 +12,10 @@ class ApplicationController < ActionController::Base
         return true
       end
 
-      player_id = request.headers['player-id']
+      @player_id = request.headers['player-id']
       password = request.headers['password']
 
-      if Player.find(player_id).authenticate(password)
+      if Player.find(@player_id).authenticate(password)
         return false
       else
         render json: {'error':'Invalid login details'}

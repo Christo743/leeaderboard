@@ -5,18 +5,13 @@ class ApiController < ApplicationController
 
   def record_score
 
-    if params[:player_id].nil?
-      render :json => {'error': 'player_id missing'}
-      return
-    end
-
     if params[:score].nil?
       render :json => {'error': 'score missing'}
       return
     end
 
     playerHistory = PlayerHistory.new
-    playerHistory.player_id = params[:player_id]
+    playerHistory.player_id = @player_id
     playerHistory.score = params[:score]
     playerHistory.rank = playerHistory.player.player_histories.where('score > ?', params[:score]).count + 1
     if playerHistory.rank == 1
