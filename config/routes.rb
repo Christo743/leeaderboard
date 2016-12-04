@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   resources :awards
   resources :players
 
-  match ':controller(/:action(/:id))', :via => [:get, :post]
+  match ':controller(/:action(/:id))', :via => [:get, :post, :delete]
 
 end

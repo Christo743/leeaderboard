@@ -3,6 +3,7 @@ class ApiController < ApplicationController
   before_action :valid_request
   layout :false
 
+  # POST REQUEST
   def record_score
 
     if params[:score].nil?
@@ -23,6 +24,32 @@ class ApiController < ApplicationController
       render :json => playerHistory
     else
       render :json => {'error': 'there was an error while saving the score'}
+    end
+
+  end
+
+  # DELETE REQUEST
+  def delete
+
+    thePlayer = Player.find(@player_id)
+    render :json => thePlayer.destroy
+
+  end
+
+  # POST REQUEST
+  def edit
+
+    if params[:username].nil?
+      render :json => {'error': 'username missing'}
+      return
+    end
+
+    thePlayer = Player.find(@player_id)
+    thePlayer.username = params[:username]
+    if thePlayer.save
+      render :json => thePlayer
+    else
+      render :json => {'error': 'there was an error while saving the players'}
     end
 
   end
