@@ -1,6 +1,7 @@
 class ApiController < ApplicationController
 
-  before_action :valid_request
+  before_action :valid_request, :except => [:highscore, :weeklyHighScore]
+
   layout :false
 
   # POST REQUEST
@@ -53,5 +54,48 @@ class ApiController < ApplicationController
     end
 
   end
+
+  # GET REQUEST
+  # PARAMS: - count (optional)     = int   default: 20      / number of players returned
+  def highscore
+
+    count = 20
+    if !params[:count].nil?
+      count = params[:count]
+    end
+
+    players = Player.order(score: :desc).first(count)
+    render :json => players
+
+  end
+
+  # POST REQUEST
+  # PARAMS: - count (optional)     = int   default: 20      / number of players returned
+  #         - timestamp (optional) = int   default: Today   / the week returned
+  def weeklyHighScore
+
+    count = 20
+    if !params[:count].nil?
+      count = params[:count]
+    end
+
+    date = Date.today - 7.days
+    if !params[:timestamp].nil?
+      date = Time.at(params[:timestamp]).to_datetime
+    end
+
+    players = PlayerHistory.where('created_at >= ? and created_at <= ?', date.at_beginning_of_week, date.at_beginning_of_week + 7.days).order(score: :desc).first(count)
+
+    index = 1
+    players.each do |playersHistory|
+      playersHistory.rank = index
+      index = index + 1
+    end
+
+    render :json => players
+
+
+  end
+
 
 end
