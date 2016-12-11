@@ -1,6 +1,7 @@
 class ApiController < ApplicationController
 
-  before_action :valid_request, :except => [:highscore, :weeklyHighScore]
+  before_action :valid_request, :except => [:highscore, :weeklyHighScore, :availableDemographics
+                                            ]
 
   layout :false
 
@@ -33,7 +34,7 @@ class ApiController < ApplicationController
   def delete
 
     thePlayer = Player.find(@player_id)
-    render :json => thePlayer.destroy
+    render :json => thePlayer.destroy, :except => [:password_digest]
 
   end
 
@@ -48,7 +49,7 @@ class ApiController < ApplicationController
     thePlayer = Player.find(@player_id)
     thePlayer.username = params[:username]
     if thePlayer.save
-      render :json => thePlayer
+      render :json => thePlayer, :except => [:password_digest]
     else
       render :json => {'error': 'there was an error while saving the players'}
     end
@@ -65,7 +66,7 @@ class ApiController < ApplicationController
     end
 
     players = Player.order(score: :desc).first(count)
-    render :json => players
+    render :json => players, :except => [:password_digest]
 
   end
 
@@ -93,7 +94,35 @@ class ApiController < ApplicationController
     end
 
     render :json => players
+  end
 
+  # GET REQUEST
+  def availableDemographics
+
+    render :json => Player.all.pluck(:demographic).uniq
+
+  end
+
+  def highScoreDemographic
+
+    count = 20
+    if !params[:count].nil?
+      count = params[:count]
+    end
+
+    demographic = 'UK'
+    if !params[:demographic].nil?
+      demographic = params[:demographic]
+    end
+
+    index = 1
+    players = Player.where('demographic = ?', demographic).order(score: :desc).first(count)
+    players.each do |playersHistory|
+      playersHistory.rank = index
+      index = index + 1
+    end
+
+    render :json => players, :except => [:password_digest]
 
   end
 
