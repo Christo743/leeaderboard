@@ -126,5 +126,18 @@ class ApiController < ApplicationController
 
   end
 
+  def playerInfo
+
+    if params[:player_id].nil?
+      render :json => {'error': 'player_id missing'}
+      return
+    end
+
+    player = Player.find(params[:player_id])
+    player_awawrds = Award.where('id in (?)',player.player_awards.pluck(:award_id))
+    render :json => {'player': player, 'awards': player_awawrds, 'scoreHistory': player.player_histories}, :except => [:password_digest]
+
+  end
+
 
 end

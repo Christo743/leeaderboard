@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e29297e7-9cd9-4f76-abbf-dfd616badd03" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/api_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/api_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/player.rb" afterPath="$PROJECT_DIR$/app/models/player.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -66,8 +64,8 @@
       <file leaf-file-name="api_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/api_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="785">
+              <caret line="137" column="136" lean-forward="false" selection-start-line="137" selection-start-column="136" selection-end-line="137" selection-end-column="136" />
               <folding />
             </state>
           </provider>
@@ -644,12 +642,12 @@
       <option name="presentableId" value="Default" />
       <updated>1481476673310</updated>
       <workItem from="1481476675293" duration="14470000" />
-      <workItem from="1481551860144" duration="9504000" />
+      <workItem from="1481551860144" duration="10071000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23974000" />
+    <option name="totallyTimeSpent" value="24541000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="862" y="0" width="1065" height="1047" extended-state="0" />
@@ -1060,8 +1058,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/api_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="785">
+          <caret line="137" column="136" lean-forward="false" selection-start-line="137" selection-start-column="136" selection-end-line="137" selection-end-column="136" />
           <folding />
         </state>
       </provider>
