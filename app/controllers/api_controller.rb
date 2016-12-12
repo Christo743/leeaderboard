@@ -1,11 +1,14 @@
 class ApiController < ApplicationController
 
-  before_action :valid_request, :except => [:highscore, :weeklyHighScore, :availableDemographics
-                                            ]
+  before_action :valid_request, :except => [:highscore, :weeklyHighScore, :availableDemographics]
 
   layout :false
 
+  # Recrods a new score that the player achieved
   # POST REQUEST
+  # Requires Header:  - player-id  = int      / player's id
+  #                   - password   = string   / players password
+  # Body PARAMS:      - score       = int     /  score earned
   def record_score
 
     if params[:score].nil?
@@ -30,7 +33,11 @@ class ApiController < ApplicationController
 
   end
 
+  # Deletes the user with all the records connected to it
   # DELETE REQUEST
+  # Requires Header:  - player-id  = int      / player's id
+  #                   - password   = string   / players password
+  # Body PARAMS:
   def delete
 
     thePlayer = Player.find(@player_id)
@@ -38,7 +45,11 @@ class ApiController < ApplicationController
 
   end
 
+  # Edits the user with the parameters specified
   # POST REQUEST
+  # Requires Header:  - player-id  = int      / player's id
+  #                   - password   = string   / players password
+  # Body PARAMS:      - username   = string   / new username of the player
   def edit
 
     if params[:username].nil?
@@ -56,7 +67,9 @@ class ApiController < ApplicationController
 
   end
 
-  # GET REQUEST
+  # Returns the global highscore, by default only the top 20 players are returned
+  # GET/POST REQUEST
+  # Requires Header:
   # PARAMS: - count (optional)     = int   default: 20      / number of players returned
   def highscore
 
@@ -70,7 +83,10 @@ class ApiController < ApplicationController
 
   end
 
-  # POST REQUEST
+  # Returns the weekly highscore, by default only the top 20 players are returned and the current
+  # week's highscore is returned. By specifying a timestamp the hihgscore from that week will be returned
+  # GET/POST REQUEST
+  # Requires Header:
   # PARAMS: - count (optional)     = int   default: 20      / number of players returned
   #         - timestamp (optional) = int   default: Today   / the week returned
   def weeklyHighScore
@@ -96,13 +112,21 @@ class ApiController < ApplicationController
     render :json => players
   end
 
-  # GET REQUEST
+  # Returns the a list of the demographics that are in the database
+  # GET/POST REQUEST
+  # Requires Header:
+  # PARAMS:
   def availableDemographics
 
     render :json => Player.all.pluck(:demographic).uniq
 
   end
 
+  # Returns the highscore of a demographic area
+  # GET/POST REQUEST
+  # Requires Header:
+  # PARAMS: - count (optional)     = int   default: 20      / number of players returned
+  #         - demographic (optional) = int   default: UK    / the demographic chosen
   def highScoreDemographic
 
     count = 20
@@ -126,6 +150,11 @@ class ApiController < ApplicationController
 
   end
 
+
+  # Returns the details of a player with achievements and score history
+  # GET/POST REQUEST
+  # Requires Header:
+  # PARAMS: - player_id     = int   /  player's id that will be returned
   def playerInfo
 
     if params[:player_id].nil?
@@ -138,6 +167,5 @@ class ApiController < ApplicationController
     render :json => {'player': player, 'awards': player_awawrds, 'scoreHistory': player.player_histories}, :except => [:password_digest]
 
   end
-
 
 end
