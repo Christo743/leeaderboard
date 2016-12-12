@@ -13,6 +13,21 @@ Clone the repository and run `rails s -e production` or for a console interactio
 
 
 ## Usage
+
+Get requests:
+- /api/playerInfo
+- /api/availableDemographics
+- /api/highScoreDemographic
+- /api/weeklyHighScore
+- /api/highscore
+
+Post/Get requests:
+- /api/edit
+- /api/record_score
+
+Delete requests:
+- /api/delete
+
 Check the `\app\controllers\api_controller.rb` for more details
 
 ## Contributing
@@ -33,7 +48,8 @@ Check the `\app\controllers\api_controller.rb` for more details
 - players can be access as resources
 - weekly awards are assigned to players
 ## Credits
-Chris Illingworth <christo743@hotmail.co.uk>
+Chris Illingworth `christo743@hotmail.co.uk`
+
 ## License
 **MIT License**
 
