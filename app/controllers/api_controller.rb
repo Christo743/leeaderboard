@@ -96,7 +96,7 @@ class ApiController < ApplicationController
       count = params[:count]
     end
 
-    date = Date.today - 7.days
+    date = Date.today
     if !params[:timestamp].nil?
       date = Time.at(params[:timestamp]).to_datetime
     end
