@@ -6,6 +6,7 @@ the users can check the global ratings and also the weekly stats of other player
 website, one can see all the awards that the selected player had and the history of his/her score.
 
 A working demo can be found at the following link: https://leaderboard301cr.herokuapp.com/
+A video demonstration can be found here:https://youtu.be/JDcCDHU3bIg
 
 
 ## Installation
@@ -13,6 +14,9 @@ Clone the repository and run `rails s -e production` or for a console interactio
 
 
 ## Usage
+List players:
+https://leaderboard301cr.herokuapp.com/players
+https://leaderboard301cr.herokuapp.com/players.json
 
 Get requests:
 - /api/playerInfo
